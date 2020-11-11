@@ -32,6 +32,7 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "html/homePage.html"));
 });
 
+<<<<<<< HEAD
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "html/reservations.html"));
 });
@@ -42,12 +43,31 @@ app.get("/viewTables", function (req, res) {
 
 // Create New Reservations - takes in JSON input
 app.post("/api/reservations", function (req, res) {
+=======
+app.get("/reservations", function (req, res) {
+  res.sendFile(path.join(__dirname, "html/reservations.html"));
+});
+
+// Displays all characters
+app.get("/api/reservations", function (req, res) {
+  return res.json(reservations);
+});
+
+// Displays a single character, or returns false
+app.get("/api/reservations/:reservation", function (req, res) {
+  var chosen = req.params.reservation;
+
+});
+// Create New Characters - takes in JSON input
+app.post("/api/reservation", function (req, res) {
+>>>>>>> 2f4a094ff042f1aa9db8062f9016d0768d38f41a
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
 
   // Using a RegEx Pattern to remove spaces from newReservation
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+<<<<<<< HEAD
   newReservation.routeName = newReservation.name
     .replace(/\s+/g, "")
     .toLowerCase();
@@ -55,6 +75,13 @@ app.post("/api/reservations", function (req, res) {
   console.log(newReservation);
 
   reservations.push(newReservation);
+=======
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newReservation);
+
+  characters.push(newReservation);
+>>>>>>> 2f4a094ff042f1aa9db8062f9016d0768d38f41a
 
   res.json(newReservation);
 });
