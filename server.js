@@ -12,43 +12,54 @@ var PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Table Reservations (DATA)
+// =============================================================
+var reservations = [
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  },
+];
+
+// Routes
+// =============================================================
+
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "html/homePage.html"));
 });
 
-app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
+app.get("/reserve", function (req, res) {
+  res.sendFile(path.join(__dirname, "html/reservations.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function (req, res) {
-  return res.json(characters);
+app.get("/viewTables", function (req, res) {
+  res.sendFile(path.join(__dirname, "html/viewTables.html"));
 });
 
-// Displays a single character, or returns false
-app.get("/api/characters/:character", function (req, res) {
-  var chosen = req.params.character;
-
-
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function (req, res) {
+// Create New Reservations - takes in JSON input
+app.post("/api/reservations", function (req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newCharacter = req.body;
+  var newReservation = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
+  // Using a RegEx Pattern to remove spaces from newReservation
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+  newReservation.routeName = newReservation.name
+    .replace(/\s+/g, "")
+    .toLowerCase();
 
-  console.log(newCharacter);
+  console.log(newReservation);
 
-  characters.push(newCharacter);
+  reservations.push(newReservation);
 
-  res.json(newCharacter);
+  res.json(newReservation);
 });
 
-  // Starts the server to begin listening
+// Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
