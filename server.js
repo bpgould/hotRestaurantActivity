@@ -14,38 +14,38 @@ app.use(express.json());
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "html/homePage.html"));
 });
 
-app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
+app.get("/reservations", function (req, res) {
+  res.sendFile(path.join(__dirname, "html/reservations.html"));
 });
 
 // Displays all characters
-app.get("/api/characters", function (req, res) {
-  return res.json(characters);
+app.get("/api/reservations", function (req, res) {
+  return res.json(reservations);
 });
 
 // Displays a single character, or returns false
-app.get("/api/characters/:character", function (req, res) {
-  var chosen = req.params.character;
+app.get("/api/reservations/:reservation", function (req, res) {
+  var chosen = req.params.reservation;
 
-
+});
 // Create New Characters - takes in JSON input
-app.post("/api/characters", function (req, res) {
+app.post("/api/reservation", function (req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newCharacter = req.body;
+  var newReservation = req.body;
 
   // Using a RegEx Pattern to remove spaces from newCharacter
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newCharacter);
+  console.log(newReservation);
 
-  characters.push(newCharacter);
+  characters.push(newReservation);
 
-  res.json(newCharacter);
+  res.json(newReservation);
 });
 
   // Starts the server to begin listening
