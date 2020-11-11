@@ -22,6 +22,52 @@ var reservations = [
     phoneNumber: 8887311234,
     email: "ron@parksandrec.com",
   },
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  },
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  },
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  },
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  },
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  },
+  {
+    routeName: "ronswanson",
+    name: "Ron Swanson",
+    id: "1776",
+    phoneNumber: 8887311234,
+    email: "ron@parksandrec.com",
+  }
+];
+
+var waitlist = [
+
 ];
 
 // Routes
@@ -32,26 +78,27 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "html/homePage.html"));
 });
 
-<<<<<<< HEAD
-app.get("/reserve", function (req, res) {
-  res.sendFile(path.join(__dirname, "html/reservations.html"));
-});
-
-app.get("/viewTables", function (req, res) {
-  res.sendFile(path.join(__dirname, "html/viewTables.html"));
-});
-
-// Create New Reservations - takes in JSON input
-app.post("/api/reservations", function (req, res) {
-=======
 app.get("/reservations", function (req, res) {
   res.sendFile(path.join(__dirname, "html/reservations.html"));
+});
+
+app.get("/viewtables", function (req, res) {
+  res.sendFile(path.join(__dirname, "html/viewTables.html"));
 });
 
 // Displays all characters
 app.get("/api/reservations", function (req, res) {
   return res.json(reservations);
 });
+
+app.get("/api/waitlist", function (req, res) {
+  
+  waitlist = reservations.slice(5);
+  
+  
+  return res.json(waitlist);
+});
+
 
 // Displays a single character, or returns false
 app.get("/api/reservations/:reservation", function (req, res) {
@@ -60,28 +107,17 @@ app.get("/api/reservations/:reservation", function (req, res) {
 });
 // Create New Characters - takes in JSON input
 app.post("/api/reservation", function (req, res) {
->>>>>>> 2f4a094ff042f1aa9db8062f9016d0768d38f41a
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
 
   // Using a RegEx Pattern to remove spaces from newReservation
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-<<<<<<< HEAD
-  newReservation.routeName = newReservation.name
-    .replace(/\s+/g, "")
-    .toLowerCase();
-
-  console.log(newReservation);
-
-  reservations.push(newReservation);
-=======
   newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
   console.log(newReservation);
 
   characters.push(newReservation);
->>>>>>> 2f4a094ff042f1aa9db8062f9016d0768d38f41a
 
   res.json(newReservation);
 });
